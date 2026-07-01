@@ -25,6 +25,8 @@ jobs:
   
     - name: Install Python3 and CMake
       run: |
+        cmake -E capabilities > file.txt
+        type file.txt
         choco install -y python3
         choco install -y cmake
       shell: powershell
@@ -48,7 +50,6 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -E capabilities
         cmake .. -A x64 -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=Release
         msbuild SuperBLT.sln /t:Build /p:Configuration=Release
       shell: powershell
